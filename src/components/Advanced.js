@@ -88,24 +88,58 @@ export default class OptimalMap extends Component {
 
   handleStart = e => {
     let input = e.target.value;
-    let res = input.split(" ");
-    if (res.length >= 2) {
-      let lat = res[0];
-      let lng = res[1];
-      this.setState({ startLat: lat });
-      this.setState({ startLng: lng });
+    let geocoder;
+    function initialize() {
+      geocoder = new google.maps.Geocoder();
     }
+    initialize();
+    geocoder.geocode(
+      {
+        address: input
+      },
+      (results, status) => {
+        let lat = results[0].geometry.location.lat();
+        let lng = results[0].geometry.location.lng();
+        this.setState({ startLat: lat });
+        this.setState({ startLng: lng });
+      }
+    );
+    // let res = input.split(" ");
+    // if (res.length >= 2) {
+    //   let lat = res[0];
+    //   let lng = res[1];
+    //   this.setState({ startLat: lat });
+    //   this.setState({ startLng: lng });
+    // }
+    console.log(input);
   };
 
   handleEnd = e => {
     let input = e.target.value;
-    let res = input.split(" ");
-    if (res.length >= 2) {
-      let lat = res[0];
-      let lng = res[1];
-      this.setState({ endLat: lat });
-      this.setState({ endLng: lng });
+    let geocoder;
+    function initialize() {
+      geocoder = new google.maps.Geocoder();
     }
+    initialize();
+    geocoder.geocode(
+      {
+        address: input
+      },
+      (results, status) => {
+        let lat = results[0].geometry.location.lat();
+        let lng = results[0].geometry.location.lng();
+        this.setState({ endLat: lat });
+        this.setState({ endLng: lng });
+      }
+    );
+    // let res = input.split(" ");
+    // if (res.length >= 2) {
+    //   let lat = res[0];
+    //   let lng = res[1];
+    //   this.setState({ endLat: lat });
+    //   this.setState({ endLng: lng });
+    // }
+    console.log(input);
   };
 
   handleBtnClick = () => {
