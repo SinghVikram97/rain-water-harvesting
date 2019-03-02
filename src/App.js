@@ -11,6 +11,7 @@ import Advanced from "./components/Advanced";
 class App extends Component {
   render() {
     const MapLoader = withScriptjs(Playground);
+    const MapLoader2 = withScriptjs(Advanced);
     return (
       <BrowserRouter>
         <div className="App">
@@ -33,7 +34,7 @@ class App extends Component {
               exact
               path="/advanced"
               component={() => (
-                <MapLoader
+                <MapLoader2
                   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDurZQBXjtSzKeieXwtFeGe-jhZu-HEGQU"
                   loadingElement={<div style={{ height: `100%` }} />}
                 />
