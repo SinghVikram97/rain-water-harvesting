@@ -8,10 +8,12 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Playground from "./components/Playground";
 import { withScriptjs } from "react-google-maps";
 import Advanced from "./components/Advanced";
+import Network from "./components/Network";
 class App extends Component {
   render() {
     const MapLoader = withScriptjs(Playground);
     const MapLoader2 = withScriptjs(Advanced);
+    const MapLoader3 = withScriptjs(Network);
     return (
       <BrowserRouter>
         <div className="App">
@@ -35,6 +37,16 @@ class App extends Component {
               path="/advanced"
               component={() => (
                 <MapLoader2
+                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDurZQBXjtSzKeieXwtFeGe-jhZu-HEGQU"
+                  loadingElement={<div style={{ height: `100%` }} />}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/network"
+              component={() => (
+                <MapLoader3
                   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDurZQBXjtSzKeieXwtFeGe-jhZu-HEGQU"
                   loadingElement={<div style={{ height: `100%` }} />}
                 />

@@ -20,6 +20,9 @@ export default class Navbar extends Component {
           <li className="pt4">
             <Link to="/advanced">Advanced</Link>
           </li>
+          <li className="pt4">
+            <Link to="/network">Network</Link>
+          </li>
         </ul>
       </div>
     );
