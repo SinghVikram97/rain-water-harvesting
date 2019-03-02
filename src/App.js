@@ -29,7 +29,6 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/addmarkers" component={AddMarkers} />
           </Switch>
         </div>
       </BrowserRouter>

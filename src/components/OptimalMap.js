@@ -8,13 +8,7 @@ import {
   InfoWindow
 } from "react-google-maps";
 
-let locations;
-fetch("https://rwholt-api.herokuapp.com/possible-locations")
-  .then(res => res.json())
-  .then(data => {
-    locations = data;
-    console.log(locations);
-  });
+let locations = [];
 
 const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
@@ -27,9 +21,28 @@ const MyMapComponent = withScriptjs(
     </GoogleMap>
   ))
 );
-
 export default class OptimalMap extends Component {
+  constructor() {
+    super();
+    this.state = {
+      locations: []
+    };
+  }
+  componentDidMount() {
+    fetch("https://rwholt-api.herokuapp.com/possible-locations")
+      .then(res => res.json())
+      .then(data => {
+        locations = data;
+        this.setState({
+          locations: locations
+        });
+        //console.log(locations);
+        //data_recieved = true;
+      });
+  }
   render() {
+    if (!this.state.locations) return null;
+    let locations = this.state.locations;
     return (
       <MyMapComponent
         isMarkerShown
@@ -38,7 +51,7 @@ export default class OptimalMap extends Component {
         containerElement={
           <div
             style={{
-              height: `980px`,
+              height: "980px",
               marginLeft: 0,
               paddingLeft: 0,
               marginRight: "10px"
