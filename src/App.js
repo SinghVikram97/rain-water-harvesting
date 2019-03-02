@@ -7,7 +7,7 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Playground from "./components/Playground";
 import { withScriptjs } from "react-google-maps";
-import AddMarkers from "./components/AddMarkers";
+import Advanced from "./components/Advanced";
 class App extends Component {
   render() {
     const MapLoader = withScriptjs(Playground);
@@ -22,6 +22,16 @@ class App extends Component {
             <Route
               exact
               path="/playground"
+              component={() => (
+                <MapLoader
+                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDurZQBXjtSzKeieXwtFeGe-jhZu-HEGQU"
+                  loadingElement={<div style={{ height: `100%` }} />}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/advanced"
               component={() => (
                 <MapLoader
                   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDurZQBXjtSzKeieXwtFeGe-jhZu-HEGQU"
