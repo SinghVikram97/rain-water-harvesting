@@ -23,6 +23,9 @@ export default class Navbar extends Component {
           <li className="pt4">
             <Link to="/network">Network</Link>
           </li>
+          <li className="pt4">
+            <Link to="/placetank">Place Tank</Link>
+          </li>
         </ul>
       </div>
     );

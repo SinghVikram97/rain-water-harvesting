@@ -9,6 +9,7 @@ import Playground from "./components/Playground";
 import { withScriptjs } from "react-google-maps";
 import Advanced from "./components/Advanced";
 import Network from "./components/Network";
+import PlaceTank from "./components/PlaceTank";
 class App extends Component {
   render() {
     const MapLoader = withScriptjs(Playground);
@@ -52,6 +53,7 @@ class App extends Component {
                 />
               )}
             />
+            <Route exact path="/placetank" component={PlaceTank} />
           </Switch>
         </div>
       </BrowserRouter>
