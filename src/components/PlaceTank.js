@@ -81,6 +81,20 @@ const Map = compose(
 ));
 
 export default class PlaceTank extends React.Component {
+  handleClick = () => {
+    let csv = "Lat,Lng,Id,Address\n";
+    locations.forEach(row => {
+      let address = row.address;
+      address.split(",").join("");
+      csv += row.lat + "," + row.lng + "," + row.tankId + "," + address + "\n";
+    });
+    console.log(csv);
+    let hiddenElement = document.createElement("a");
+    hiddenElement.href = "data:text/csv;charset=utf-8," + encodeURI(csv);
+    hiddenElement.target = "_blank";
+    hiddenElement.download = "tank.csv";
+    hiddenElement.click();
+  };
   render() {
     return (
       <div style={{ height: "100%" }}>
@@ -92,7 +106,11 @@ export default class PlaceTank extends React.Component {
           }
           mapElement={<div style={{ height: `100%` }} />}
         />
-        <button type="button" className="btn btn-primary mt4 ml6">
+        <button
+          type="button"
+          className="btn btn-primary mt4 ml6"
+          onClick={this.handleClick}
+        >
           Download
         </button>
       </div>
