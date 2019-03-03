@@ -68,8 +68,8 @@ const Map = compose(
   withGoogleMap
 )(props => (
   <GoogleMap
-    defaultZoom={8}
-    defaultCenter={{ lat: 28.7041, lng: 77.1025 }}
+    defaultZoom={15}
+    defaultCenter={{ lat: 28.6315, lng: 77.2167 }}
     onClick={props.onMapClick}
   >
     {/* <Marker position={props.markerPosition} />
@@ -79,7 +79,6 @@ const Map = compose(
     })}
   </GoogleMap>
 ));
-
 export default class PlaceTank extends React.Component {
   handleClick = () => {
     let csv = "Lat,Lng,Id,Address\n";
