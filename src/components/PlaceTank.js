@@ -1,3 +1,4 @@
+/*global google*/
 import React from "react";
 import { compose, withStateHandlers } from "recompose";
 import {
@@ -18,7 +19,6 @@ let tankId = 0;
 const Map = compose(
   withStateHandlers(
     () => ({
-      isMarkerShown: false,
       markerPosition: null
     }),
     {
@@ -26,21 +26,40 @@ const Map = compose(
         let lat = e.latLng.lat();
         let lng = e.latLng.lng();
 
-        console.log(lat, lng);
+        let geocoder = new google.maps.Geocoder();
 
-        tankId++;
+        let address;
 
-        locations.push({
-          lat: lat,
-          lng: lng,
-          tankId: tankId
-        });
+        geocoder.geocode(
+          {
+            location: {
+              lat: lat,
+              lng: lng
+            }
+          },
+          (results, status) => {
+            tankId++;
+            address = results[0].formatted_address;
+            locations.push({
+              lat: lat,
+              lng: lng,
+              tankId: tankId,
+              address: address
+            });
 
-        console.log(locations);
+            console.log(locations);
 
+            let data =
+              "text/json;charset=utf-8," +
+              encodeURIComponent(JSON.stringify(locations));
+
+            return {
+              markerPosition: e.latLng
+            };
+          }
+        );
         return {
-          markerPosition: e.latLng,
-          isMarkerShown: true
+          markerPosition: e.latLng
         };
       }
     }
@@ -49,7 +68,7 @@ const Map = compose(
   withGoogleMap
 )(props => (
   <GoogleMap
-    defaultZoom={18}
+    defaultZoom={8}
     defaultCenter={{ lat: 28.7041, lng: 77.1025 }}
     onClick={props.onMapClick}
   >
@@ -69,10 +88,13 @@ export default class PlaceTank extends React.Component {
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDurZQBXjtSzKeieXwtFeGe-jhZu-HEGQU"
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={
-            <div style={{ height: `980px`, marginRight: "10px" }} />
+            <div style={{ height: `890px`, marginRight: "10px" }} />
           }
           mapElement={<div style={{ height: `100%` }} />}
         />
+        <button type="button" className="btn btn-primary mt4 ml6">
+          Download
+        </button>
       </div>
     );
   }
