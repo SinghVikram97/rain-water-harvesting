@@ -12,7 +12,7 @@ let locations = [];
 
 const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
-    <GoogleMap defaultZoom={8} defaultCenter={{ lat: 28.7041, lng: 77.1025 }}>
+    <GoogleMap defaultZoom={11} defaultCenter={{ lat: 28.7041, lng: 77.1025 }}>
       {locations.map(latlng => {
         return <Marker position={{ lat: latlng.lat, lng: latlng.lng }} />;
       })}
@@ -27,7 +27,7 @@ export default class OptimalMap extends Component {
     };
   }
   componentDidMount() {
-    fetch("https://stark-fjord-87960.herokuapp.com/possible-locations")
+    fetch("https://stark-fjord-87960.herokuapp.com/locations")
       .then(res => res.json())
       .then(data => {
         locations = data.slice(0, 100);
