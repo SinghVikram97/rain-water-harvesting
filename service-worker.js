@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/rain-water-harvesting/precache-manifest.aeb166717b49284470befbd091db41d4.js"
+  "/rain-water-harvesting/precache-manifest.dc27e7e4e4d00c0c569a8e9a178e9278.js"
 );
 
 workbox.clientsClaim();
