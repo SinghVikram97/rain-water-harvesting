@@ -10,11 +10,13 @@ import { withScriptjs } from "react-google-maps";
 import Advanced from "./components/Advanced";
 import Network from "./components/Network";
 import PlaceTank from "./components/PlaceTank";
+import ViewTankRoute from "./components/ViewTankRoute";
 class App extends Component {
   render() {
     const MapLoader = withScriptjs(Playground);
     const MapLoader2 = withScriptjs(Advanced);
     const MapLoader3 = withScriptjs(Network);
+    const MapLoader4 = withScriptjs(ViewTankRoute);
     return (
       <BrowserRouter>
         <div className="App">
@@ -54,6 +56,16 @@ class App extends Component {
               )}
             />
             <Route exact path="/placetank" component={PlaceTank} />
+            <Route
+              exact
+              path="/viewtankroute"
+              component={() => (
+                <MapLoader4
+                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDurZQBXjtSzKeieXwtFeGe-jhZu-HEGQU"
+                  loadingElement={<div style={{ height: `100%` }} />}
+                />
+              )}
+            />
           </Switch>
         </div>
       </BrowserRouter>

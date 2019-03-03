@@ -26,6 +26,9 @@ export default class Navbar extends Component {
           <li className="pt4">
             <Link to="/placetank">Place Tank</Link>
           </li>
+          <li className="pt4">
+            <Link to="/viewtankroute">Tank Data</Link>
+          </li>
         </ul>
       </div>
     );
